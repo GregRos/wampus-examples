@@ -3,16 +3,24 @@ export interface UserInfo {
 	name: string;
 	age: number;
 }
+
+
+
+
+
+
+
+
+
+
 export module Wmp {
 	export module Host {
 		export module SendMessage {
 			export const name = "messages.send";
 
-			export interface Req {
-				kwargs: {
-					senderId: string;
-					text: string;
-				}
+			export interface Args {
+				senderId: string;
+				text: string;
 			}
 
 			export interface Res {}
@@ -21,26 +29,20 @@ export module Wmp {
 		export module UserList {
 			export const name = "users.list";
 
-			export interface Req {}
+			export interface Args {}
 
-			export type Res = {
-				args: UserInfo[]
-			}
+			export type Res = UserInfo[];
 		}
 
 		export module UserDetails {
 			export const name = "users.details";
 
-			export interface Req {
-				kwargs: {
-					userId: string;
-				}
+			export interface Args {
+				userId: string;
 			}
 
-			export interface Res {
-				kwargs: {
-					name: string;
-				}
+			export interface Result {
+				name: string;
 			}
 		}
 
@@ -48,10 +50,8 @@ export module Wmp {
 			export const name = "users.connected";
 
 			export interface Event {
-				kwargs: {
-					date: Date;
-					userId: string;
-				}
+				date: Date;
+				userId: string;
 			}
 		}
 
@@ -59,24 +59,20 @@ export module Wmp {
 			export const name = "users.disconnected";
 
 			export interface Event {
-				kwargs: {
-					date: Date;
-					userId: string;
-				}
+				date: Date;
+				userId: string;
 			}
 		}
 
 		export module LogIn {
 			export const name = "sys.login";
 
-			export interface Req {
-				kwargs: {
-					user: string;
-					pass: string;
-				}
+			export interface Args {
+				user: string;
+				pass: string;
 			}
 
-			export interface Res {
+			export interface Result {
 
 			}
 		}

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Ticket} from "wampus/tickets";
 import Client = Wmp.Client;
 import {HelloDetails} from "wampus/protocol";
+import {map} from "rxjs/operators";
 
 type TypedMessage<T> = WampusCallArguments & T;
 
@@ -38,8 +39,8 @@ export class ChatUserClient {
 		let connector = new ChatUserClient(null as never);
 		let topics = await session.topics([Wmp.Host.UserConnected.name, Wmp.Host.UserDisconnected.name]);
 
-		connector.userConnected = topics.topic[Wmp.Host.UserConnected.name];
-		connector.userDisconnected = topics.topic[Wmp.Host.UserDisconnected.name];
+		connector.userConnected = topics.topic[Wmp.Host.UserConnected.name].pipe(map(x => x.kwargs));
+		connector.userDisconnected = topics.topic[Wmp.Host.UserDisconnected.name].pipe(map(x => x.kwargs));
 
 		let push = await session.procedure({
 			name : Wmp.Client.PushMessage.name(id),
@@ -54,26 +55,24 @@ export class ChatUserClient {
 
 	}
 
-	sendMessage(msg : Wmp.Host.SendMessage.Req) {
+	sendMessage(msg : Wmp.Host.SendMessage.Args) {
 		return this._session.call({
 			name: Wmp.Host.SendMessage.name,
-			kwargs : {
-				...msg
-			}
+			kwargs : msg
 		});
 	}
 
 	userList() {
 		return this._session.call({
-			name : Wmp.Host.UserList.name,
-		}).result as Promise<Wmp.Host.UserList.Res>;
+			name : Wmp.Host.UserList.name
+		}).result.then(x => x.kwargs.users) as Promise<Wmp.Host.UserList.Res>;
 	}
 
-	logIn(msg: Wmp.Host.LogIn.Req) {
+	logIn(msg: Wmp.Host.LogIn.Args) {
 		return this._session.call({
 			name: Wmp.Host.LogIn.name,
-			...msg
-		}).result as Promise<Wmp.Host.LogIn.Res>;
+			kwargs: msg
+		}).result.then(x => x.kwargs) as Promise<Wmp.Host.LogIn.Result>;
 	}
 
 	userDetails(userId : string) {
@@ -82,7 +81,7 @@ export class ChatUserClient {
 			kwargs : {
 				userId
 			}
-		}).result as Promise<Wmp.Host.UserList.Res>;
+		}).result.then(x => x.kwargs) as Promise<Wmp.Host.UserList.Res>;
 	}
 
 	userConnected : Observable<Wmp.Host.UserConnected.Event>;
