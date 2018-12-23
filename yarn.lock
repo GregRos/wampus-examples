@@ -39,10 +39,15 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
+typescript@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.2.tgz#fe8101c46aa123f8353523ebdcf5730c2ae493e5"
+  integrity sha512-VCj5UiSyHBjwfYacmDuc/NOk4QQixbE+Wn7MFJuS0nRuPQbof132Pw4u53dm264O8LPc2MVsc7RJNml5szurkg==
+
 wampus@^0.2.10:
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/wampus/-/wampus-0.2.13.tgz#f4b9f2b6fa074576c96d0d819277cad87090e023"
-  integrity sha512-17M8mskQ6RdvEEFBoM6QIiY4AzX17XELyY/q1xjsonHJnSzlhMM7Sdv8pKPVmHP6lPhcUTiwOB2AdEGN3VKHbw==
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/wampus/-/wampus-0.2.14.tgz#7dd13d6f93b3d5b1daf615f18eae8cc616ecd9d7"
+  integrity sha512-5xpnK3m789LSKuNFn1NuodPc2/82N3XsekqdfcwBKCsiSRa0X0NQHA+GpjSGFVV212fxMq/nPf05jMaofGLbKw==
   dependencies:
     isomorphic-ws "^4.0.1"
     lodash "^4.17.11"

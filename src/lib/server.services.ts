@@ -10,7 +10,7 @@ export class ServerServices {
 	async create(session : WampusSession) {
 		let prefix = str => `server.${str}`;
 
-		session.registerAll({
+		session.procedures({
 			async [prefix("messages.push")]({kwargs}) {
 				return {}
 			},

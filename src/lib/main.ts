@@ -18,14 +18,14 @@ export class WampusUsing {
 	}
 	async s() {
 
-		this.session.registerAll({
+		this.session.procedures({
 			async [this._prefix("messages.push")]({kwargs : {message, sender}}) {
 				return {}
 			},
 
 		});
 
-		this.session.registerAll({
+		this.session.procedures({
 			async [this._pr2("user_info.update")]({kwargs : {}}) {
 				return {};
 			}

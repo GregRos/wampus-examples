@@ -15,5 +15,7 @@
 		"rxjs": "^6.3.3",
 		"wampus": "^0.2.10"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"typescript": "^3.2.2"
+	}
 }
